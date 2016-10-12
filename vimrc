@@ -19,7 +19,6 @@ Plug 'elmcast/elm-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
@@ -98,7 +97,7 @@ nnoremap <leader>l :set nolist!<cr>
 nnoremap <leader>n :set norelativenumber!<cr>
 nnoremap <leader>p o<esc>"+p
 nnoremap <leader>q :q<cr>
-nnoremap <leader>s <esc>:write<cr>
+nnoremap <leader>s :write<cr>
 nnoremap <leader>ve :e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
 

@@ -16,18 +16,13 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-export PATH="$HOME/.rbenv/bin:$PATH"
+PATH="$HOME/bin:$PATH"
+PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+PATH="$PATH:$HOME/.node/bin"
+PATH="$PATH:/usr/local/heroku/bin"
+PATH="$PATH:$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+PATH="$PATH:$HOME/.rbenv/plugins/ruby-build/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-setxkbmap -option 'caps:ctrl_modifier'
-xcape -e 'Caps_Lock=Escape'

@@ -9,8 +9,9 @@ $if mode=vi
 "\C-a": beginning-of-line
 "\C-e": end-of-line
 "\C-l": clear-screen
-"\C-n": next-history
-"\C-p": previous-history
+#"\C-n": next-history
+"\C-n": history-search-forward
+"\C-p": history-search-backward
 "\C-w": backward-kill-word
 
 "\e.": yank-last-arg

@@ -83,6 +83,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+LS_COLORS="${LS_COLORS}*.pdf=38;5;134:"
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -118,3 +119,23 @@ function mcd {
 }
 
 set -o vi
+
+# Colored man pages: http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
+# Less Colors for Man Pages
+# export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+# export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+# export LESS_TERMCAP_me=$'\E[0m'           # end mode
+# export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+# export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'    # begin standout-mode - info box
+# export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+# export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
+export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
+export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
+export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
+export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
+export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
+export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
+
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape'

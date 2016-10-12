@@ -1,0 +1,13 @@
+[user]
+	email = nswilson@gmail.com
+	name = Nathan Wilson
+[core]
+	excludesfile = /home/nathan/.gitignore
+[push]
+	default = simple
+[alias]
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	co = checkout
+	cob = checkout -b
+	a = add -A
+	cm = commit -m
