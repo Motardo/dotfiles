@@ -16,13 +16,16 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-PATH="$HOME/bin:$PATH"
-PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-PATH="$PATH:$HOME/.node/bin"
-PATH="$PATH:/usr/local/heroku/bin"
-PATH="$PATH:$HOME/.rbenv/bin"
-eval "$(rbenv init -)"
-PATH="$PATH:$HOME/.rbenv/plugins/ruby-build/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
+#if [ ! $profile_paths ]; then
+#	export profile_paths=$(( profile_paths + 1 ))
+#	PATH="$HOME/bin:$PATH"
+#	PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#	PATH="$PATH:$HOME/.node/bin"
+#	PATH="$PATH:/usr/local/heroku/bin"
+#	PATH="$PATH:$HOME/.rbenv/bin"
+#	PATH="$PATH:$HOME/.rbenv/plugins/ruby-build/bin"
+#
+#	eval "$(rbenv init -)"
+#	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#
+#fi
