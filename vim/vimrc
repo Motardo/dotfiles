@@ -25,6 +25,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 call plug#end()"
 
+set path+=**
+set wildmenu
 set showcmd " Show partial commands in the last line of the screen
 set hlsearch
 set nomodeline
