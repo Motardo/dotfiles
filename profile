@@ -20,7 +20,7 @@ if [ ! -n "$profile_paths" ]; then
 	export profile_paths=$(( profile_paths + 1 ))
 	PATH="$HOME/bin:$PATH"
 	PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-	PATH="$PATH:$HOME/.node/bin"
+	PATH="$PATH:$HOME/.local/bin"
 	PATH="$PATH:/usr/local/heroku/bin"
 	PATH="$PATH:$HOME/.rbenv/bin"
 	PATH="$PATH:$HOME/.rbenv/plugins/ruby-build/bin"
