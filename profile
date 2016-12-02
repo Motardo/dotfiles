@@ -22,10 +22,7 @@ if [ ! -n "$profile_paths" ]; then
 	PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 	PATH="$PATH:$HOME/.local/bin"
 	PATH="$PATH:/usr/local/heroku/bin"
-	PATH="$PATH:$HOME/.rbenv/bin"
-	PATH="$PATH:$HOME/.rbenv/plugins/ruby-build/bin"
 
-	eval "$(rbenv init -)"
 	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 fi
