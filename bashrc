@@ -72,7 +72,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-PS1="\[\e[1;36m\]\W\[\e[1;31m\]:\[\e[0m\] "
+PS1="\[\e[1;36m\]\w\[\e[1;31m\]:\[\e[0m\] "
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -120,6 +120,12 @@ function mcd {
 	mkdir -p $1 && cd $1
 }
 
+pathadd() {
+if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="${PATH:+"$PATH:"}$1"
+fi
+}
+
 set -o vi
 
 # Colored man pages: http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
@@ -144,3 +150,6 @@ xcape -e 'Caps_Lock=Escape'
 
 export NVM_DIR="/home/nathan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+source ~/.rvm/scripts/rvm
+

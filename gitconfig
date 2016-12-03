@@ -11,6 +11,7 @@
 	cb = checkout -b
 	a = add -A
 	cm = commit -m
+	c = commit
 	b = branch
 	pom = push origin master
 	st = status -sb
