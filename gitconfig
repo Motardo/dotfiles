@@ -3,6 +3,7 @@
 	name = Nathan Wilson
 [core]
 	excludesfile = /home/nathan/.gitignore
+	editor = vim
 [push]
 	default = simple
 [alias]
