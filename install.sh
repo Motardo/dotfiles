@@ -13,6 +13,7 @@ function makelink {
 }
 
 makelink  bash_aliases           .bash_aliases
+makelink  bash_profile           .bash_profile
 makelink  bashrc                 .bashrc
 makelink  gitconfig              .gitconfig
 makelink  gitignore              .gitignore

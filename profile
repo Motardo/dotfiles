@@ -16,19 +16,15 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+export GOROOT=$HOME/.local/go
+export GOPATH=$HOME/work
+
 if [ ! -n "$profile_paths" ]; then
 	export profile_paths=$(( profile_paths + 1 ))
 	PATH="$HOME/bin:$PATH"
 	PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 	PATH="$PATH:$HOME/.local/bin"
 	PATH="$PATH:/usr/local/heroku/bin"
-
+        PATH="$PATH:$GOROOT/bin"
+        export PATH
 fi
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-export GOROOT=$HOME/.local/go
-export GOPATH=$HOME/work
-export PATH=$PATH:$GOROOT/bin

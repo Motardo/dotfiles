@@ -147,8 +147,3 @@ export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
 
 setxkbmap -option 'caps:ctrl_modifier'
 xcape -e 'Caps_Lock=Escape'
-
-export NVM_DIR="/home/nathan/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
