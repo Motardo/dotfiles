@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 export GOROOT=$HOME/.local/go
-export GOPATH=$HOME/work
+export GOPATH=$HOME/go
 
 if [ ! -n "$profile_paths" ]; then
 	export profile_paths=$(( profile_paths + 1 ))
@@ -26,5 +26,6 @@ if [ ! -n "$profile_paths" ]; then
 	PATH="$PATH:$HOME/.local/bin"
 	PATH="$PATH:/usr/local/heroku/bin"
         PATH="$PATH:$GOROOT/bin"
+        PATH="$PATH:$GOPATH/bin"
         export PATH
 fi

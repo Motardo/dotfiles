@@ -3,6 +3,7 @@ filetype indent plugin on
 syntax on
 
 call plug#begin()
+Plug 'arrufat/vala.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
@@ -13,6 +14,7 @@ Plug 'garbas/vim-snipmate'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
 Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'majutsushi/tagbar'
 Plug 'raichoo/purescript-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
@@ -222,3 +224,4 @@ vmap al :Tabularize /[\[\\|,]<CR>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
 
+let g:tagbar_ctags_bin = "anjuta-tags"
