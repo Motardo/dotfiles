@@ -73,8 +73,15 @@ nnoremap Y y$
 nnoremap zl $
 nnoremap zh ^
 
-nnoremap zc :lcl<cr>
-nnoremap zo :lop<cr>
+" Quickfix list navigation
+nnoremap zc :cclose<cr>:lclose<cr>
+nnoremap zo :copen<cr>:lop<cr>
+nnoremap zd :cn<cr>
+nnoremap zu :cp<cr>
+
+" Location list navigation
+"nnoremap zc :lcl<cr>
+"nnoremap zo :lop<cr>
 nnoremap zn :lne<cr>
 nnoremap zp :lpr<cr>
 
