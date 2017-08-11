@@ -3,19 +3,21 @@ filetype indent plugin on
 syntax on
 
 call plug#begin()
-Plug 'arrufat/vala.vim'
+Plug 'moll/vim-node'
+Plug 'mattn/emmet-vim'
+Plug 'digitaltoad/vim-pug'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
-Plug 'elmcast/elm-vim'
 Plug 'ervandew/supertab'
 Plug 'flazz/vim-colorschemes'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'mxw/vim-jsx'
 Plug 'garbas/vim-snipmate'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'majutsushi/tagbar'
-Plug 'raichoo/purescript-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplete.vim'
@@ -24,13 +26,15 @@ Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'Motardo/nim.vim'
 call plug#end()"
 
 set path+=**
 set wildmenu
-set showcmd " Show partial commands in the last line of the screen
+set showcmd
 set hlsearch
 set nomodeline
+set nowrap
 
 " put git status, column/row number, total lines, and percentage in status
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
@@ -56,6 +60,9 @@ set shiftwidth=2
 set expandtab
 set tabstop=8
 
+set grepprg=gr\ -nH
+command! -nargs=+ Gr execute "silent" "grep!" shellescape("<args>") | copen 8
+
 "------------------------------------------------------------
 " Mappings
 
@@ -65,8 +72,8 @@ vnoremap , :
 nnoremap : ,
 vnoremap : ,
 
-nnoremap % \
-vnoremap % \
+nnoremap \ %
+vnoremap \ %
 
 nnoremap Y y$
 
@@ -74,16 +81,20 @@ nnoremap zl $
 nnoremap zh ^
 
 " Quickfix list navigation
-nnoremap zc :cclose<cr>:lclose<cr>
-nnoremap zo :copen<cr>:lop<cr>
-nnoremap zd :cn<cr>
-nnoremap zu :cp<cr>
+nnoremap gc :cclose<cr>
+nnoremap go :copen<cr>
+nnoremap g<Space> :cn<cr>
+nnoremap gy :cp<cr>
+nnoremap g. :cc<cr>
+"g abclostyz./>
+"z pquy./>,;:?
 
 " Location list navigation
-"nnoremap zc :lcl<cr>
-"nnoremap zo :lop<cr>
-nnoremap zn :lne<cr>
-nnoremap zp :lpr<cr>
+nnoremap zc :lcl<cr>
+nnoremap zo :lop<cr>
+nnoremap z<Space> :lne<cr>
+nnoremap zy :lpr<cr>
+nnoremap z. :ll<cr>
 
 vnoremap . :norm.<cr>
 
@@ -91,7 +102,7 @@ vnoremap . :norm.<cr>
 "------------------------------------------------------------
 
 noremap! jk <esc>
-noremap! <C-F> <Esc>gUiw`]a
+inoremap <C-F> <Esc>gUiw`]a
 inoremap <C-L> <Esc>%%a
 
 " Leader key mappings
@@ -112,6 +123,11 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>s :write<cr>
 nnoremap <leader>ve :e $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
+nnoremap <leader>x O// eslint-disable-next-line no-
+nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>; mqA;<esc>`q
+
+let NERDSpaceDelims=1
 
 let g:netrw_liststyle=3
 let g:netrw_banner=0
@@ -121,15 +137,22 @@ autocmd FileType netrw setl bufhidden=delete
 
 let g:elm_syntastic_show_warnings = 1"
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint', 'jscs']
 let g:syntastic_haskell_checkers = ['hlint', 'hdevtools']
 let g:syntastic_html_tidy_ignore_errors = ['unescaped &', 'lacks "action']
+let g:syntastic_javascript_eslint_exe='$(which eslint)'
 "------------------------------------------------------------
 
 set wildignore+=node_modules
 set wildignore+=public/lib
 
 highlight Normal ctermbg=None
+
+let g:jsx_ext_required = 0
+" Highlight ES6 template strings
+"hi link javaScriptTemplateDelim String
+"hi link javaScriptTemplateVar Text
+"hi link javaScriptTemplateString String
 
 let g:elm_format_autosave = 1
 
@@ -230,4 +253,16 @@ vmap al :Tabularize /[\[\\|,]<CR>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
 
-let g:tagbar_ctags_bin = "anjuta-tags"
+" let g:tagbar_ctags_bin = "ctags"
+
+fun! JumpToDef()
+  if exists("*GotoDefinition_" . &filetype)
+    call GotoDefinition_{&filetype}()
+  else
+    exe "norm! \<C-]>"
+  endif
+endf
+
+" Jump to tag
+nn <M-g> :call JumpToDef()<cr>
+ino <M-g> <esc>:call JumpToDef()<cr>i

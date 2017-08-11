@@ -1,6 +1,7 @@
 [user]
 	email = nswilson@gmail.com
 	name = Nathan Wilson
+	username = Motardo
 [core]
 	excludesfile = /home/nathan/.gitignore
 	editor = vim

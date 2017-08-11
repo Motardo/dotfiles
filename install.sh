@@ -22,3 +22,4 @@ makelink  profile                .profile
 makelink  tmux.conf              .tmux.conf
 makelink  vim/vimrc              .vim/vimrc
 makelink  vim/autoload/plug.vim  .vim/autoload/plug.vim
+makelink  vim/after/ftplugin/javascript.vim  .vim/after/ftplugin/javascript.vim

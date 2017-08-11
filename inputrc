@@ -2,8 +2,8 @@
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 
-set editing-mode vi
-set keymap vi-insert
+#set editing-mode vi
+#set keymap vi-insert
 
 $if mode=vi
 "\C-a": beginning-of-line
@@ -15,4 +15,6 @@ $if mode=vi
 "\C-w": backward-kill-word
 
 "\e.": yank-last-arg
+"\e-": yank-nth-arg
 $endif
+"\C-b": unix-filename-rubout

@@ -72,7 +72,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-PS1="\[\e[1;36m\]\w\[\e[1;31m\]:\[\e[0m\] "
+PS1="\[\e[1;36m\]\W\[\e[1;31m\]:\[\e[0m\] "
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -91,6 +91,7 @@ LS_COLORS="${LS_COLORS}*.pdf=38;5;134:"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias l.='ls -dl .*'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -120,23 +121,49 @@ function mcd {
 	mkdir -p $1 && cd $1
 }
 
+function cl {
+  if [ -z $1 ]
+  then
+    curl localhost:3000/
+  else
+    curl localhost:${1}
+  fi
+}
+
+function fs {
+  find -not \( -path ./node_modules -prune -o -path ./.git -prune -o -name package-lock.json -o -name *.swp \) -type f
+}
+export -f fs
+
+function gr {
+  grep "$@" $(fs)
+}
+export -f gr
+
+function checkAllJs {
+  eslint --format compact $(fs |grep '.js$') | sed '/^ /q'
+}
+export -f checkAllJs
+
 pathadd() {
 if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     PATH="${PATH:+"$PATH:"}$1"
 fi
 }
 
-set -o vi
+function _editcommandline() {
+    local tmp_file="$(mktemp "/tmp/bash-editinplace.XXXXXX")"
+    echo "$READLINE_LINE" >| "$tmp_file"
 
-# Colored man pages: http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
-# Less Colors for Man Pages
-# export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-# export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-# export LESS_TERMCAP_me=$'\E[0m'           # end mode
-# export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-# export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'    # begin standout-mode - info box
-# export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-# export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+    vim +"call cursor(1, $READLINE_POINT + 1)" "$tmp_file"
+
+    READLINE_LINE="$(< "$tmp_file")"
+    READLINE_POINT="${#READLINE_LINE}"
+
+    rm -f "$tmp_file"
+}
+bind -x '"\C-Xe": _editcommandline'
+
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
 export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
 export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
@@ -147,3 +174,6 @@ export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
 
 setxkbmap -option 'caps:ctrl_modifier'
 xcape -e 'Caps_Lock=Escape'
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
