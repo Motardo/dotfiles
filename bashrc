@@ -131,7 +131,13 @@ function cl {
 }
 
 function fs {
-  find -not \( -path ./node_modules -prune -o -path ./.git -prune -o -name package-lock.json -o -name *.swp \) -type f
+  find -not \( \
+    -path ./node_modules -prune -o \
+    -path ./.git -prune -o \
+    -path ./build -prune -o \
+    -name package-lock.json -o \
+    -name *.swp \) \
+    -type f
 }
 export -f fs
 

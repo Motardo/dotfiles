@@ -4,6 +4,7 @@ syntax on
 
 call plug#begin()
 Plug 'moll/vim-node'
+Plug 'wavded/vim-stylus'
 Plug 'mattn/emmet-vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -113,7 +114,7 @@ let mapleader=" "
 
 nnoremap <leader>P "+P
 nnoremap <leader>e :Errors<CR>
-nnoremap <leader>f :buffers<CR>:buffer<space>
+nnoremap <leader>f :CtrlPBuffer<cr>
 nnoremap <leader>j ddp
 nnoremap <leader>k kddpk
 nnoremap <leader>l :set nolist!<cr>
@@ -143,8 +144,7 @@ let g:syntastic_html_tidy_ignore_errors = ['unescaped &', 'lacks "action']
 let g:syntastic_javascript_eslint_exe='$(which eslint)'
 "------------------------------------------------------------
 
-set wildignore+=node_modules
-set wildignore+=public/lib
+set wildignore+=node_modules,build,.git
 
 highlight Normal ctermbg=None
 
