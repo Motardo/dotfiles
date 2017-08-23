@@ -1,4 +1,3 @@
-
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 SSH_ENV="$HOME/.ssh/environment"
@@ -26,5 +25,8 @@ fi
 
 export NVM_DIR="/home/nathan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# OPAM configuration
+. /home/nathan/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
