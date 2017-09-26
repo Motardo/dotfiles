@@ -16,16 +16,12 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-export GOROOT=$HOME/.local/go
-export GOPATH=$HOME/go
-
 if [ ! -n "$profile_paths" ]; then
 	export profile_paths=$(( profile_paths + 1 ))
 	PATH="$HOME/bin:$PATH"
 	PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 	PATH="$PATH:$HOME/.local/bin"
 	PATH="$PATH:/usr/local/heroku/bin"
-        PATH="$PATH:$GOROOT/bin"
-        PATH="$PATH:$GOPATH/bin"
-        export PATH
+    PATH="$PATH:$HOME/.local/nim/bin"
+    export PATH
 fi
